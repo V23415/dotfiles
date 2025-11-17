@@ -1,0 +1,23 @@
+width=700
+height=340
+prompt=Search
+allow_markup=true
+gtk_dark=true
+image_size=28
+allow_images=true
+
+location=center
+layer=overlay
+hide_scroll=true
+# no_actions=true     <-- DISABLED THIS LINE
+halign=fill
+orientation=vertical
+
+show=drun
+filter_rate=100
+insensitive=true
+matching=fuzzy
+exec_search=true
+parse_search=true
+
+print_command=true

@@ -1,0 +1,28 @@
+# ~/.config/swaylock/config
+
+# Adds a blurred screenshot of your desktop as the background
+effect-blur=7x5
+
+# The color of the indicator ring
+ring-color=313244
+
+# The color of the inside of the indicator
+inside-color=1e1e2c
+
+# The color of the line that separates parts of the indicator
+separator-color=00000000
+
+# The color of the text (e.g., "Verifying...")
+text-color=f4d6b7
+
+# The main highlight color for keys being pressed
+key-hl-color=f97316
+
+# The highlight color for backspace being pressed
+bs-hl-color=e95678
+
+# Show an indicator of failed attempts
+show-failed-attempts
+
+# Hides the details of the keypresses
+hide-keyboard-layout

@@ -1,0 +1,136 @@
+// =============================================================================
+//
+// Waybar configuration
+//
+// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+//
+// =============================================================================
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+    "layer": "top",
+    "position": "top",
+    "height": 10,
+
+    // -------------------------------------------------------------------------
+    // Module Layout
+    // -------------------------------------------------------------------------
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/mode"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "network",
+        "cpu",
+        "pulseaudio",
+        "temperature",
+        "custom/keyboard-layout",
+        "battery",
+        "tray",
+        "clock#date",
+        "clock#time",
+        "custom/power" // Added the power module here
+    ],
+
+    // -------------------------------------------------------------------------
+    // Module Definitions
+    // -------------------------------------------------------------------------
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "  {icon}  {capacity}%",
+        "format-discharging": "{icon}  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": true
+    },
+    "clock#time": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "tooltip": false
+    },
+    "clock#date": {
+        "interval": 10,
+        "format": "  {:%e %b %Y}",
+        "tooltip-format": "{:%e %B %Y}"
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "  {usage}% ({load})",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "custom/keyboard-layout": {
+        "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+        "interval": 30,
+        "format": "  {}",
+        "signal": 1,
+        "tooltip": false
+    },
+    "memory": {
+        "interval": 5,
+        "format": "  {}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+    "network": {
+        "interval": 5,
+        "format-wifi": "  {essid} ({signalStrength}%)",
+        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}",
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname}: {ipaddr}"
+    },
+    "hyprland/mode": {
+        "format": "<span style=\"italic\">  {}</span>",
+        "tooltip": false
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 120
+    },
+    "hyprland/workspaces": {
+        "all-outputs": false,
+        "disable-scroll": true,
+        "format-icons": {
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+            "sort-by": "number"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "X {volume}%",
+        "format-icons": {
+            "default": ["♪", "♫", "♬"]
+        },
+        "on-click": "pavucontrol",
+        "tooltip": true
+    },
+    "temperature": {
+        "critical-threshold": 80,
+        "interval": 5,
+        "format": "{icon}  {temperatureC}°C",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": false
+    },
+    "tray": {
+        "icon-size": 19,
+        "spacing": 12
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "~/.config/waybar/scripts/powermenu.sh"
+    }
+}

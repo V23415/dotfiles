@@ -1,0 +1,39 @@
+window {
+    background-color: transparent;
+    border-radius: 10px;
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+#outer-box {
+    background-color: #2c2c31;
+    border: 1px solid #ff8000;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+#input {
+    background-color: rgba(49, 50, 68, 0.7);
+    border: none;
+    border-radius: 25px;
+    color: #f4d6b7;
+    padding: 10px 16px;
+    margin: 15px;
+    font-size: 14px;
+}
+
+#text {
+    color: #d4c4a8;
+    padding: 8px 12px;
+}
+
+#entry {
+    border-radius: 8px;
+}
+
+#entry:selected {
+    background-color: rgba(249, 115, 22, 0.2); /* Hover/Selection Effect */
+}
+
+#entry:selected #text {
+    color: #f4d6b7;
+}
