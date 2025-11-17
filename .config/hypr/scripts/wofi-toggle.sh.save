@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Check if a wofi process is already running
+if pgrep -x wofi > /dev/null
+then
+    # If it is, kill it to close the window
+    pkill -x wofi
+else
+    # If not, launch wofi
+    # Wofi will automatically use your config files
+    wofi
+fi
