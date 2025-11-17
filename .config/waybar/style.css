@@ -1,15 +1,11 @@
 /* =============================================================================
- *
- * Waybar configuration
- *
- * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
+ * Waybar styling
+ * Inspired by Hyprland example configurations
  * =========================================================================== */
 
 /* -----------------------------------------------------------------------------
  * Keyframes
  * -------------------------------------------------------------------------- */
-
 @keyframes blink-warning {
     70% {
         color: white;
@@ -33,8 +29,6 @@
 /* -----------------------------------------------------------------------------
  * Base styles
  * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
 * {
     border: none;
     border-radius: 0;
@@ -43,33 +37,79 @@
     padding: 0;
 }
 
-/* The whole bar */
 #waybar {
-    background: #323232;
-    color: white;
-    font-family: "Font Awesome 7 Free", Cantarell, Noto Sans, sans-serif;
-    font-size: 12px;
+    background: rgba(12, 12, 16, 0.65);
+    color: #e5e9f0;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 7 Free", Cantarell, "Noto Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
 }
 
-/* Each module */
-#battery,
+/* Shared pill styling for modules */
+#workspaces button,
+#window,
 #clock,
 #cpu,
-#custom-keyboard-layout,
 #memory,
-#mode,
 #network,
-#pulseaudio,
 #temperature,
+#pulseaudio,
+#battery,
 #tray,
-#custom-power {
-    padding-left: 10px;
-    padding-right: 10px;
+#custom-power,
+#custom-keyboard-layout,
+#custom-launcher {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 6px 10px;
+    margin: 0 4px;
+    transition: all 0.2s ease;
 }
 
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
+#workspaces button {
+    color: #94a3b8;
+    font-weight: 700;
+    padding: 6px 10px;
+}
+
+#workspaces button.active {
+    color: #1e293b;
+    background: linear-gradient(135deg, #8be9fd, #50fa7b);
+    box-shadow: 0 0 10px rgba(139, 233, 253, 0.35);
+}
+
+#workspaces button.urgent {
+    color: #fff;
+    background: #e06c75;
+}
+
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+#window {
+    padding-left: 12px;
+    padding-right: 12px;
+    color: #cdd6f4;
+}
+
+#clock {
+    font-weight: 700;
+    background: linear-gradient(135deg, #7aa2f7, #f7768e);
+    color: #0f172a;
+    box-shadow: 0 0 12px rgba(122, 162, 247, 0.35);
+}
+
+#pulseaudio.muted {
+    color: #f1c40f;
+}
+
+#network.disconnected {
+    color: #ffb86c;
+}
 
 #battery {
     animation-timing-function: linear;
@@ -78,11 +118,11 @@
 }
 
 #battery.warning {
-    color: orange;
+    color: #ffb86c;
 }
 
 #battery.critical {
-    color: red;
+    color: #ff5555;
 }
 
 #battery.warning.discharging {
@@ -95,85 +135,36 @@
     animation-duration: 2s;
 }
 
-#clock {
-    font-weight: bold;
+#cpu.warning,
+#memory.warning,
+#temperature.warning {
+    color: #ffb86c;
 }
 
-#cpu.warning {
-    color: orange;
-}
-
-#cpu.critical {
-    color: red;
-}
-
-#memory {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#memory.warning {
-    color: orange;
-}
-
-#memory.critical {
-    color: red;
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
-#mode {
-    background: #000000;
-    border-top: 2px solid white;
-    padding-bottom: 2px;
-}
-
-#network.disconnected {
-    color: orange;
-}
-
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
+#cpu.critical,
+#memory.critical,
 #temperature.critical {
-    color: red;
+    color: #ff5555;
 }
 
-#window {
-    font-weight: bold;
+#custom-launcher {
+    font-size: 15px;
+    background: linear-gradient(135deg, #a6e3a1, #74c7ec);
+    color: #0f172a;
+    box-shadow: 0 0 12px rgba(164, 196, 252, 0.4);
 }
 
-/* Workspace buttons */
-#workspaces button {
-    background: transparent;
-    border: none;
-    color: #888888;
-    padding: 2px 6px;
-    margin: 2px;
-    border-radius: 4px;
-    font-weight: bold;
+#custom-keyboard-layout {
+    color: #cba6f7;
 }
 
-#workspaces button.active {
-    background-color: #03080c;
-    color: white;
-}
-
-#workspaces button.urgent {
-    background-color: #c9545d;
-    color: white;
-}
-
-#workspaces button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Style for the Power Menu button */
 #custom-power {
-    background-color: #bf616a;
-    color: #eceff4;
-    border-radius: 4px;
-    margin: 2px 4px;
+    background: linear-gradient(135deg, #f38ba8, #e06c75);
+    color: #0f172a;
+    font-weight: 800;
+    box-shadow: 0 0 12px rgba(243, 139, 168, 0.35);
+}
+
+#tray {
+    padding-right: 6px;
 }
