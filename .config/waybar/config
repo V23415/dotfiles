@@ -2,7 +2,7 @@
 //
 // Waybar configuration
 //
-// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+// Inspired by examples from https://wiki.hypr.land/Configuring/Example-configurations/
 //
 // =============================================================================
 {
@@ -11,29 +11,33 @@
     // -------------------------------------------------------------------------
     "layer": "top",
     "position": "top",
-    "height": 10,
+    "height": 32,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 8,
 
     // -------------------------------------------------------------------------
     // Module Layout
     // -------------------------------------------------------------------------
     "modules-left": [
+        "custom/launcher",
         "hyprland/workspaces",
-        "hyprland/mode"
+        "hyprland/window"
     ],
     "modules-center": [
-        "hyprland/window"
+        "clock#main"
     ],
     "modules-right": [
         "network",
         "cpu",
-        "pulseaudio",
+        "memory",
         "temperature",
+        "pulseaudio",
         "custom/keyboard-layout",
         "battery",
         "tray",
-        "clock#date",
-        "clock#time",
-        "custom/power" // Added the power module here
+        "custom/power"
     ],
 
     // -------------------------------------------------------------------------
@@ -45,24 +49,24 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "  {icon}  {capacity}%",
-        "format-discharging": "{icon}  {capacity}%",
+        "format": "{icon} {capacity}%",
+        "format-discharging": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "tooltip": true
     },
-    "clock#time": {
+    "clock#main": {
         "interval": 1,
-        "format": "{:%H:%M:%S}",
-        "tooltip": false
-    },
-    "clock#date": {
-        "interval": 10,
-        "format": "  {:%e %b %Y}",
-        "tooltip-format": "{:%e %B %Y}"
+        "format": "  {:%H:%M}    {:%a %d %b}",
+        "tooltip-format": "{:%A, %B %d %Y • %H:%M:%S}",
+        "calendar": {
+            "mode": "month",
+            "on-scroll": 1
+        }
     },
     "cpu": {
-        "interval": 5,
-        "format": "  {usage}% ({load})",
+        "interval": 3,
+        "format": " {usage}%",
         "states": {
             "warning": 70,
             "critical": 90
@@ -75,9 +79,15 @@
         "signal": 1,
         "tooltip": false
     },
+    "custom/launcher": {
+        "format": "",
+        "tooltip": "Open launcher",
+        "on-click": "wofi --show drun",
+        "on-click-right": "wofi --show run"
+    },
     "memory": {
         "interval": 5,
-        "format": "  {}%",
+        "format": "  {percentage}%",
         "states": {
             "warning": 70,
             "critical": 90
@@ -87,32 +97,30 @@
         "interval": 5,
         "format-wifi": "  {essid} ({signalStrength}%)",
         "format-ethernet": "  {ifname}: {ipaddr}/{cidr}",
-        "format-disconnected": "⚠  Disconnected",
+        "format-disconnected": "  Offline",
         "tooltip-format": "{ifname}: {ipaddr}"
-    },
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">  {}</span>",
-        "tooltip": false
     },
     "hyprland/window": {
         "format": "{}",
-        "max-length": 120
+        "max-length": 60,
+        "separate-outputs": true
     },
     "hyprland/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
+        "format": "{icon}",
         "format-icons": {
             "urgent": "",
             "focused": "",
             "default": ""
         },
-            "sort-by": "number"
+        "sort-by": "number"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "X {volume}%",
+        "format-muted": " {volume}%",
         "format-icons": {
-            "default": ["♪", "♫", "♬"]
+            "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
         "tooltip": true
@@ -120,16 +128,16 @@
     "temperature": {
         "critical-threshold": 80,
         "interval": 5,
-        "format": "{icon}  {temperatureC}°C",
-        "format-icons": ["", "", "", "", ""],
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["", "", "", "", ""],
         "tooltip": false
     },
     "tray": {
-        "icon-size": 19,
-        "spacing": 12
+        "icon-size": 18,
+        "spacing": 10
     },
     "custom/power": {
-        "format": "⏻",
+        "format": "",
         "tooltip": false,
         "on-click": "~/.config/waybar/scripts/powermenu.sh"
     }
